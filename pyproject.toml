@@ -1,0 +1,75 @@
+[project]
+name = "claudiminder"
+version = "0.1.0"
+description = "Claude usage tracking & reminder tool with TUI/GUI support"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { text = "MIT" }
+authors = [{ name = "hieubt" }]
+keywords = ["claude", "anthropic", "usage", "tracker", "reminder", "tui", "gui"]
+
+dependencies = [
+    "httpx>=0.28.0",
+    "loguru>=0.7.3",
+    "pydantic>=2.10.0",
+    "pydantic-settings>=2.7.0",
+    "tenacity>=9.0.0",
+    "rich>=13.9.0",
+    "textual>=1.0.0",
+    "browser-cookie3>=0.19.1",
+    "typer>=0.15.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.25.0",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.14.0",
+]
+
+[project.scripts]
+claudiminder = "claudiminder.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/backend"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src/backend", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "F",      # Pyflakes
+    "I",      # isort
+    "B",      # flake8-bugbear
+    "C4",     # flake8-comprehensions
+    "UP",     # pyupgrade
+    "ARG",    # flake8-unused-arguments
+    "SIM",    # flake8-simplify
+]
+ignore = ["E501"]  # line too long (handled by formatter)
+
+[tool.ruff.lint.isort]
+known-first-party = ["claudiminder"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+plugins = ["pydantic.mypy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-v --cov=src/backend --cov-report=term-missing"
