@@ -1,4 +1,4 @@
-# claudiminder
+# Claudeminder
 
 Claude usage tracking & reminder tool with TUI/GUI support for Linux, Windows, and macOS.
 

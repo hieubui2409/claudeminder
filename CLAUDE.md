@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**claudiminder** - Claude usage tracking & reminder tool with TUI/GUI support for Linux, Windows, and macOS.
+**Claudeminder** - Claude usage tracking & reminder tool with TUI/GUI support for Linux, Windows, and macOS.
 
 ### Core Features
 

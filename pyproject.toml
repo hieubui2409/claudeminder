@@ -1,7 +1,7 @@
 [project]
 name = "claudiminder"
 version = "0.1.0"
-description = "Claude usage tracking & reminder tool with TUI/GUI support"
+description = "Claudeminder - Claude usage tracking & reminder tool with TUI/GUI support"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { text = "MIT" }
