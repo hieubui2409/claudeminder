@@ -1223,7 +1223,7 @@ describe("themeStore", () => {
     setTheme("glass-light");
 
     // Zustand persist should save to localStorage
-    const stored = localStorage.getItem("claudiminder-theme");
+    const stored = localStorage.getItem("claudeminder-theme");
     expect(stored).toContain("glass-light");
   });
 

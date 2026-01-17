@@ -324,7 +324,7 @@ export const useSettingsStore = create<SettingsStore>()(
       setProgressBarType: (type) => set({ progressBarType: type }),
       setLayout: (layout) => set({ layout }),
     }),
-    { name: "claudiminder-settings" },
+    { name: "claudeminder-settings" },
   ),
 );
 ```
@@ -398,7 +398,7 @@ export const useThemeStore = create<ThemeStore>()(
         }
       },
     }),
-    { name: "claudiminder-theme" },
+    { name: "claudeminder-theme" },
   ),
 );
 
@@ -447,7 +447,7 @@ export const useI18nStore = create<I18nStore>()(
         i18n.changeLanguage(lang);
       },
     }),
-    { name: "claudiminder-language" },
+    { name: "claudeminder-language" },
   ),
 );
 ```

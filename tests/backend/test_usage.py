@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from src.backend.models.usage import FiveHourUsage, UsageResponse
+from backend.models.usage import FiveHourUsage, UsageResponse
 
 
 class TestUsageModels:

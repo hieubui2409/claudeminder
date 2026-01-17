@@ -1,0 +1,42 @@
+/* Dark Theme - Modern Glassmorphism */
+
+[data-theme="dark"] {
+  /* Background Colors - Rich Dark */
+  --bg-primary: #0f0f1a;
+  --bg-secondary: #1a1a2e;
+  --bg-tertiary: #252540;
+  --bg-glass: rgba(15, 15, 30, 0.7);
+  --glass-bg: rgba(15, 15, 30, 0.7);
+
+  /* Text Colors - Soft Whites */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  --text-muted: #64748b;
+
+  /* Border Colors */
+  --border-primary: rgba(255, 255, 255, 0.08);
+  --border-secondary: rgba(255, 255, 255, 0.04);
+  --border-glass: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.1);
+
+  /* Accent Override for Dark */
+  --accent-primary: #818cf8;
+  --accent-secondary: #a78bfa;
+  --accent-glow: 0 0 20px rgba(129, 140, 248, 0.4);
+
+  /* Component Backgrounds */
+  --card-bg: rgba(30, 30, 50, 0.6);
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --button-bg: rgba(255, 255, 255, 0.06);
+  --button-hover-bg: rgba(255, 255, 255, 0.1);
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --shadow-xl: 0 20px 60px rgba(0, 0, 0, 0.4);
+
+  /* Overlay */
+  --overlay-bg: rgba(15, 15, 26, 0.85);
+}

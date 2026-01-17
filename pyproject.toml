@@ -1,5 +1,5 @@
 [project]
-name = "claudiminder"
+name = "claudeminder"
 version = "0.1.0"
 description = "Claudeminder - Claude usage tracking & reminder tool with TUI/GUI support"
 readme = "README.md"
@@ -18,6 +18,10 @@ dependencies = [
     "textual>=1.0.0",
     "browser-cookie3>=0.19.1",
     "typer>=0.15.0",
+    "desktop-notifier>=5.0.0",
+    "tomli>=2.0.0",
+    "tomli-w>=1.0.0",
+    "filelock>=3.16.0",
 ]
 
 [project.optional-dependencies]
@@ -25,12 +29,20 @@ dev = [
     "pytest>=8.3.0",
     "pytest-asyncio>=0.25.0",
     "pytest-cov>=6.0.0",
+    "pytest-httpx>=0.35.0",
     "ruff>=0.8.0",
     "mypy>=1.14.0",
+    "pyright>=1.1.0",
+    "pre-commit>=4.0.0",
+]
+build = [
+    "nuitka>=2.4.0",
+    "ordered-set>=4.1.0",
 ]
 
 [project.scripts]
-claudiminder = "claudiminder.cli:main"
+claudeminder = "backend.cli:main"
+claudeminder-sidecar = "backend.sidecar:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -59,7 +71,7 @@ select = [
 ignore = ["E501"]  # line too long (handled by formatter)
 
 [tool.ruff.lint.isort]
-known-first-party = ["claudiminder"]
+known-first-party = ["backend"]
 
 [tool.mypy]
 python_version = "3.12"
@@ -71,5 +83,6 @@ plugins = ["pydantic.mypy"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
 asyncio_mode = "auto"
-addopts = "-v --cov=src/backend --cov-report=term-missing"
+addopts = "-v --cov=src/backend --cov-report=term-missing --cov-fail-under=60"

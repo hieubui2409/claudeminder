@@ -14,6 +14,16 @@ from ..models.usage import UsageResponse
 from ..utils.credentials import clear_credentials_cache, get_access_token
 
 
+class RateLimitError(Exception):
+    """Raised when API rate limit is exceeded."""
+    pass
+
+
+class TokenExpiredError(Exception):
+    """Raised when OAuth token is expired or invalid."""
+    pass
+
+
 @dataclass
 class UsageCache:
     """Cache for usage API response."""
@@ -51,7 +61,7 @@ async def _fetch_usage_async(client: httpx.AsyncClient, token: str) -> UsageResp
             "Content-Type": "application/json",
             "Authorization": f"Bearer {token}",
             "anthropic-beta": "oauth-2025-04-20",
-            "User-Agent": "claudiminder/0.1.0",
+            "User-Agent": "backend/0.1.0",
         },
         timeout=10.0,
     )
@@ -59,7 +69,11 @@ async def _fetch_usage_async(client: httpx.AsyncClient, token: str) -> UsageResp
     if response.status_code == 401:
         logger.warning("Token expired or invalid")
         clear_credentials_cache()
-        return None
+        raise TokenExpiredError("OAuth token expired or invalid")
+
+    if response.status_code == 429:
+        logger.warning("Rate limit exceeded")
+        raise RateLimitError("API rate limit exceeded")
 
     response.raise_for_status()
     return UsageResponse.model_validate(response.json())
@@ -75,24 +89,34 @@ async def get_usage_async() -> UsageResponse | None:
     token = get_access_token()
     if token is None:
         _usage_cache = UsageCache(data=None, timestamp=time.time(), token_expired=True)
-        return None
+        raise TokenExpiredError("No OAuth token available")
 
     try:
         async with httpx.AsyncClient() as client:
             data = await _fetch_usage_async(client, token)
             _usage_cache = UsageCache(data=data, timestamp=time.time(), token_expired=False)
             return data
+    except TokenExpiredError:
+        _usage_cache = UsageCache(data=None, timestamp=time.time(), token_expired=True)
+        raise
+    except RateLimitError:
+        _usage_cache = UsageCache(data=None, timestamp=time.time())
+        raise
     except httpx.HTTPStatusError as e:
         if e.response.status_code == 401:
             _usage_cache = UsageCache(data=None, timestamp=time.time(), token_expired=True)
+            raise TokenExpiredError("OAuth token expired or invalid") from e
+        elif e.response.status_code == 429:
+            _usage_cache = UsageCache(data=None, timestamp=time.time())
+            raise RateLimitError("API rate limit exceeded") from e
         else:
             _usage_cache = UsageCache(data=None, timestamp=time.time())
-        logger.error(f"HTTP error fetching usage: {e}")
-        return None
+            logger.error(f"HTTP error fetching usage: {e}")
+            raise
     except Exception as e:
         _usage_cache = UsageCache(data=None, timestamp=time.time())
         logger.error(f"Error fetching usage: {e}")
-        return None
+        raise
 
 
 def get_usage_sync() -> UsageResponse | None:
@@ -119,7 +143,7 @@ def get_usage_sync() -> UsageResponse | None:
                     "Content-Type": "application/json",
                     "Authorization": f"Bearer {token}",
                     "anthropic-beta": "oauth-2025-04-20",
-                    "User-Agent": "claudiminder/0.1.0",
+                    "User-Agent": "backend/0.1.0",
                 },
                 timeout=10.0,
             )
@@ -150,3 +174,39 @@ def clear_usage_cache() -> None:
 def is_token_expired() -> bool:
     """Check if token is known to be expired."""
     return _usage_cache is not None and _usage_cache.token_expired
+
+
+class UsageAPI:
+    """Usage API client class for TUI/GUI integration."""
+
+    async def get_usage(self) -> UsageResponse:
+        """Get usage data asynchronously.
+
+        Returns:
+            UsageResponse with usage data
+
+        Raises:
+            RuntimeError: If no token or failed to fetch
+        """
+        result = await get_usage_async()
+        if result is None:
+            if is_token_expired():
+                raise RuntimeError("Token expired. Please re-login to Claude.")
+            raise RuntimeError("Failed to fetch usage data")
+        return result
+
+    def get_usage_sync_wrapped(self) -> UsageResponse:
+        """Get usage data synchronously.
+
+        Returns:
+            UsageResponse with usage data
+
+        Raises:
+            RuntimeError: If no token or failed to fetch
+        """
+        result = get_usage_sync()
+        if result is None:
+            if is_token_expired():
+                raise RuntimeError("Token expired. Please re-login to Claude.")
+            raise RuntimeError("Failed to fetch usage data")
+        return result

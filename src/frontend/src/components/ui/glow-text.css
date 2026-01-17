@@ -1,0 +1,93 @@
+/* Glow Text - Subtle elegant glow effect */
+.glow-text {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* Intensity levels - softer than neon */
+.glow-text--low {
+  text-shadow: 0 0 8px var(--glow-color, var(--accent-primary, #6366f1));
+}
+
+.glow-text--medium {
+  text-shadow:
+    0 0 10px var(--glow-color, var(--accent-primary, #6366f1)),
+    0 0 20px
+      color-mix(
+        in srgb,
+        var(--glow-color, var(--accent-primary, #6366f1)) 50%,
+        transparent
+      );
+}
+
+.glow-text--high {
+  text-shadow:
+    0 0 12px var(--glow-color, var(--accent-primary, #6366f1)),
+    0 0 24px
+      color-mix(
+        in srgb,
+        var(--glow-color, var(--accent-primary, #6366f1)) 60%,
+        transparent
+      ),
+    0 0 36px
+      color-mix(
+        in srgb,
+        var(--glow-color, var(--accent-primary, #6366f1)) 30%,
+        transparent
+      );
+}
+
+/* Color variants using new palette */
+.glow-text--accent {
+  color: var(--accent-primary, #6366f1);
+  --glow-color: var(--accent-primary, #6366f1);
+}
+
+.glow-text--success {
+  color: var(--accent-success, #10b981);
+  --glow-color: var(--accent-success, #10b981);
+}
+
+.glow-text--warning {
+  color: var(--accent-warning, #f59e0b);
+  --glow-color: var(--accent-warning, #f59e0b);
+}
+
+.glow-text--danger {
+  color: var(--accent-error, #ef4444);
+  --glow-color: var(--accent-error, #ef4444);
+}
+
+/* Gradient text option */
+.glow-text--gradient {
+  background: var(
+    --gradient-primary,
+    linear-gradient(135deg, #6366f1, #8b5cf6)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.4));
+}
+
+/* Subtle pulse animation */
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.glow-text--animated {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .glow-text--animated {
+    animation: none;
+  }
+}

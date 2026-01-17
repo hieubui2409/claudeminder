@@ -1,1 +1,1 @@
-"""Tests for claudiminder."""
+"""Tests for claudeminder."""

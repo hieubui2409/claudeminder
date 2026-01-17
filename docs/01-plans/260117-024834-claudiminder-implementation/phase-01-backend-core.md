@@ -30,7 +30,7 @@ Implement Textual-based TUI (simple ANSI), reminder system with all presets, foc
 - **Focus mode**: DND when >80% + scheduled quiet hours
 - **Goals**: Daily budget + pace indicator
 - **i18n**: English + Vietnamese
-- **Config**: TOML at ~/.config/claudiminder/
+- **Config**: TOML at ~/.config/claudeminder/
 - **Logging**: User configurable level, stdout + file
 
 ## Requirements
@@ -56,7 +56,7 @@ Implement Textual-based TUI (simple ANSI), reminder system with all presets, foc
 - Poll API every 60s (not every frame)
 - Retry → toast → degraded mode on errors
 - User configurable log level
-- Logs to stdout + ~/.config/claudiminder/logs/
+- Logs to stdout + ~/.config/claudeminder/logs/
 
 ## Architecture
 
@@ -137,7 +137,7 @@ import tomli
 import tomli_w
 from pydantic import BaseModel
 
-CONFIG_DIR = Path.home() / ".config" / "claudiminder"
+CONFIG_DIR = Path.home() / ".config" / "claudeminder"
 CONFIG_FILE = CONFIG_DIR / "config.toml"
 
 class ReminderConfig(BaseModel):
@@ -188,7 +188,7 @@ def save_config(config: AppConfig) -> None:
 from pathlib import Path
 from filelock import FileLock, Timeout
 
-LOCK_FILE = Path.home() / ".config" / "claudiminder" / ".lock"
+LOCK_FILE = Path.home() / ".config" / "claudeminder" / ".lock"
 
 def acquire_instance_lock() -> FileLock | None:
     LOCK_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -315,7 +315,7 @@ _notifier: DesktopNotifier | None = None
 def _get_notifier() -> DesktopNotifier:
     global _notifier
     if _notifier is None:
-        _notifier = DesktopNotifier(app_name="claudiminder")
+        _notifier = DesktopNotifier(app_name="claudeminder")
     return _notifier
 
 async def send_notification(title: str, body: str) -> None:
@@ -394,7 +394,7 @@ class ClaudiminderApp(App):
 - [ ] Create reminder service with all presets
 - [ ] Create sidecar.py for Tauri
 - [ ] Update CLI with tui command
-- [ ] Test manually: `uv run claudiminder tui`
+- [ ] Test manually: `uv run claudeminder tui`
 
 ## Success Criteria
 

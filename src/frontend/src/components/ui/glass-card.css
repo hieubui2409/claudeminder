@@ -1,0 +1,90 @@
+/* GlassCard - Glassmorphism Container */
+.glass-card {
+  background: var(--bg-glass, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-xl, 16px);
+  padding: var(--space-lg, 1.5rem);
+  position: relative;
+  overflow: hidden;
+  transition: all 200ms ease;
+}
+
+.glass-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Blur Levels */
+.glass-card--blur-light {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.glass-card--blur-medium {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-card--blur-heavy {
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+}
+
+/* Border with glow */
+.glass-card--border {
+  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.15));
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Clickable variant */
+.glass-card--clickable {
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast, 150ms),
+    box-shadow var(--transition-fast, 150ms),
+    background var(--transition-fast, 150ms);
+}
+
+.glass-card--clickable:hover {
+  background: var(--button-hover-bg, rgba(255, 255, 255, 0.15));
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.glass-card--clickable:active {
+  transform: translateY(0);
+}
+
+/* Theme-aware styles using data-theme */
+[data-theme="dark"] .glass-card {
+  background: var(--bg-glass, rgba(10, 10, 15, 0.6));
+}
+
+[data-theme="dark"] .glass-card--border {
+  border-color: var(--border-glass, rgba(255, 255, 255, 0.1));
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .glass-card--clickable:hover {
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 12px 40px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(99, 102, 241, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="light"] .glass-card {
+  background: var(--bg-glass, rgba(255, 255, 255, 0.7));
+}
+
+[data-theme="light"] .glass-card--border {
+  border-color: var(--border-glass, rgba(255, 255, 255, 0.5));
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+}

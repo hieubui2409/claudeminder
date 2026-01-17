@@ -1,1 +1,1 @@
-"""Pydantic models for claudiminder."""
+"""Pydantic models for claudeminder."""

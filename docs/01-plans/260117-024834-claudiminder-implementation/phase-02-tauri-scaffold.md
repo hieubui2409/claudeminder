@@ -123,7 +123,7 @@ src/frontend/
 ### Step 1: Create Tauri Project
 
 ```bash
-cd /home/hieubt/Documents/ai-hub/claudiminder/src
+cd /home/hieubt/Documents/ai-hub/claudeminder/src
 bun create tauri-app frontend --template react-ts
 cd frontend
 ```
@@ -147,8 +147,8 @@ bun add @tauri-apps/plugin-notification @tauri-apps/plugin-shell @tauri-apps/plu
 ```json
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-  "productName": "claudiminder",
-  "identifier": "com.claudiminder.app",
+  "productName": "claudeminder",
+  "identifier": "com.claudeminder.app",
   "build": {
     "beforeDevCommand": "bun run dev",
     "devUrl": "http://localhost:5173",
@@ -158,7 +158,7 @@ bun add @tauri-apps/plugin-notification @tauri-apps/plugin-shell @tauri-apps/plu
   "bundle": {
     "active": true,
     "targets": "all",
-    "externalBin": ["binaries/claudiminder-backend"],
+    "externalBin": ["binaries/claudeminder-backend"],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
@@ -169,7 +169,7 @@ bun add @tauri-apps/plugin-notification @tauri-apps/plugin-shell @tauri-apps/plu
   "app": {
     "windows": [
       {
-        "title": "claudiminder",
+        "title": "claudeminder",
         "width": 400,
         "height": 300,
         "resizable": true,
@@ -370,7 +370,7 @@ use tauri_plugin_shell::ShellExt;
 pub async fn call_backend(app: &AppHandle, action: &str) -> Result<String, String> {
     let output = app
         .shell()
-        .sidecar("claudiminder-backend")
+        .sidecar("claudeminder-backend")
         .map_err(|e| e.to_string())?
         .arg(action)
         .output()
@@ -414,7 +414,7 @@ pub fn setup_tray(app: &App) -> Result<(), Box<dyn std::error::Error>> {
     TrayIconBuilder::new()
         .icon(app.default_window_icon().unwrap().clone())
         .menu(&menu)
-        .tooltip("claudiminder: Loading...")
+        .tooltip("claudeminder: Loading...")
         .on_menu_event(|app, event| match event.id().as_ref() {
             "quit" => app.exit(0),
             "show" => {
@@ -579,7 +579,7 @@ pub async fn set_global_hotkey(app: AppHandle, hotkey: String) -> Result<(), Str
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Default capabilities for claudiminder",
+  "description": "Default capabilities for claudeminder",
   "windows": ["main"],
   "permissions": [
     "core:default",
@@ -670,17 +670,17 @@ uv run nuitka3 \
   --standalone \
   --onefile \
   --output-dir=dist \
-  --output-filename=claudiminder-backend \
+  --output-filename=claudeminder-backend \
   --remove-output \
   --assume-yes-for-downloads \
-  claudiminder/cli.py
+  claudeminder/cli.py
 
 # Copy to frontend binaries
 mkdir -p ../frontend/src-tauri/binaries
-cp dist/claudiminder-backend ../frontend/src-tauri/binaries/
+cp dist/claudeminder-backend ../frontend/src-tauri/binaries/
 
 # Make executable
-chmod +x ../frontend/src-tauri/binaries/claudiminder-backend
+chmod +x ../frontend/src-tauri/binaries/claudeminder-backend
 
 echo "Sidecar binary built successfully with Nuitka"
 ```
@@ -692,13 +692,13 @@ Document HTTP_PROXY support in README:
 ````markdown
 ## Proxy Support
 
-claudiminder respects the `HTTP_PROXY` and `HTTPS_PROXY` environment variables for corporate network access.
+claudeminder respects the `HTTP_PROXY` and `HTTPS_PROXY` environment variables for corporate network access.
 
 ### Linux/macOS
 
 ```bash
 export HTTPS_PROXY=http://proxy.company.com:8080
-claudiminder
+claudeminder
 ```
 ````
 
@@ -706,7 +706,7 @@ claudiminder
 
 ```powershell
 $env:HTTPS_PROXY="http://proxy.company.com:8080"
-claudiminder
+claudeminder
 ```
 
 ```

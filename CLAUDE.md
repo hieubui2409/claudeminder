@@ -41,7 +41,7 @@ Your role is to analyze user requirements, delegate tasks to appropriate sub-age
 ## Project Structure
 
 ```
-claudiminder/
+claudeminder/
 ├── src/
 │   ├── backend/           # Python backend (sidecar)
 │   │   ├── core/          # Core business logic
@@ -71,7 +71,7 @@ claudiminder/
 ```bash
 # Backend (Python)
 uv sync                    # Install dependencies
-uv run python -m claudiminder.cli  # Run TUI
+uv run python -m claudeminder.cli  # Run TUI
 uv run pytest              # Run tests
 
 # Frontend (Tauri)

@@ -1,6 +1,6 @@
 # Development Rules
 
-This directory contains development rules and coding standards for claudiminder.
+This directory contains development rules and coding standards for claudeminder.
 
 ## Files
 

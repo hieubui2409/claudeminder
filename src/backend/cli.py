@@ -1,4 +1,4 @@
-"""CLI entry point for claudiminder."""
+"""CLI entry point for claudeminder."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ from .api.usage import get_usage_sync, is_token_expired
 from .utils.credentials import is_token_available
 
 app = typer.Typer(
-    name="claudiminder",
+    name="backend",
     help="Claude usage tracking & reminder tool",
     no_args_is_help=True,
 )
@@ -66,15 +66,15 @@ def status(
 @app.command()
 def tui() -> None:
     """Launch interactive TUI mode."""
-    typer.echo("TUI mode not yet implemented")
-    raise typer.Exit(0)
+    from .tui import run_tui
+    run_tui()
 
 
 @app.command()
 def version() -> None:
     """Show version information."""
     from . import __version__
-    typer.echo(f"claudiminder v{__version__}")
+    typer.echo(f"backend v{__version__}")
 
 
 def main() -> None:

@@ -20,7 +20,7 @@ Complete integration between Python backend sidecar and Tauri frontend. Implemen
 
 ## Key Insights (from research)
 
-- Sidecar binary needs target-triple naming (e.g., `claudiminder-backend-x86_64-unknown-linux-gnu`)
+- Sidecar binary needs target-triple naming (e.g., `claudeminder-backend-x86_64-unknown-linux-gnu`)
 - Tray tooltip updates via frontend event → Rust listener
 - Notification plugin requires permission check at startup
 - Dynamic SVG icons show percentage as circular progress
@@ -147,7 +147,7 @@ echo "Building sidecar for $TARGET with Nuitka..."
 cd src/backend
 uv run nuitka --standalone \
     --onefile \
-    --output-filename="claudiminder-backend-$TARGET$EXT" \
+    --output-filename="claudeminder-backend-$TARGET$EXT" \
     --enable-plugin=anti-bloat \
     --assume-yes-for-downloads \
     --remove-output \
@@ -155,10 +155,10 @@ uv run nuitka --standalone \
 
 # Copy to Tauri binaries
 mkdir -p ../frontend/src-tauri/binaries
-cp claudiminder-backend-$TARGET$EXT ../frontend/src-tauri/binaries/
+cp claudeminder-backend-$TARGET$EXT ../frontend/src-tauri/binaries/
 
-echo "Sidecar built: binaries/claudiminder-backend-$TARGET$EXT"
-echo "Size: $(du -h ../frontend/src-tauri/binaries/claudiminder-backend-$TARGET$EXT | cut -f1)"
+echo "Sidecar built: binaries/claudeminder-backend-$TARGET$EXT"
+echo "Size: $(du -h ../frontend/src-tauri/binaries/claudeminder-backend-$TARGET$EXT | cut -f1)"
 ```
 
 ### Step 2: Update API Client with Cert Pinning + Proxy
@@ -458,7 +458,7 @@ pub fn setup_tray(app: &App) -> Result<TrayIconId, Box<dyn std::error::Error>> {
     let tray = TrayIconBuilder::with_id("main-tray")
         .icon(app.default_window_icon().unwrap().clone())
         .menu(&menu)
-        .tooltip("claudiminder: Loading...")
+        .tooltip("claudeminder: Loading...")
         .on_menu_event(|app, event| match event.id().as_ref() {
             "quit" => app.exit(0),
             "show" => {
@@ -535,7 +535,7 @@ export async function updateTray(
     timeStr = "now!";
   }
 
-  const tooltip = `claudiminder: ${percentage.toFixed(1)}% | ${requestsUsed}/${requestsLimit} requests | Reset in ${timeStr}`;
+  const tooltip = `claudeminder: ${percentage.toFixed(1)}% | ${requestsUsed}/${requestsLimit} requests | Reset in ${timeStr}`;
 
   await emit("tray-update", { percentage, tooltip, color });
 }
@@ -1119,7 +1119,7 @@ dev = [
 
 - Nuitka sidecar builds successfully (< 30MB)
 - Sidecar executes and returns JSON in < 2s
-- Tray tooltip shows "claudiminder: XX.X% | XXX/XXXX requests | Reset in Xh Xm"
+- Tray tooltip shows "claudeminder: XX.X% | XXX/XXXX requests | Reset in Xh Xm"
 - Tray icon changes color based on usage (green/yellow/orange/red)
 - Tray icon animates (pulse) on notification
 - Desktop notification appears 30/15/5 min before reset

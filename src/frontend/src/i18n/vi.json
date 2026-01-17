@@ -1,0 +1,40 @@
+{
+  "dashboard": {
+    "title": "Sử Dụng Claude",
+    "usage": "Đã dùng",
+    "resetsIn": "Reset sau",
+    "resetComplete": "Đã Reset!",
+    "refresh": "Làm mới",
+    "goals": "Mục tiêu",
+    "budget": "Ngân sách",
+    "pace": "Tốc độ",
+    "focusMode": "Chế độ tập trung"
+  },
+  "settings": {
+    "theme": "Giao diện",
+    "language": "Ngôn ngữ",
+    "fontSize": "Cỡ chữ",
+    "progressBar": "Kiểu thanh tiến trình",
+    "colors": "Màu sắc",
+    "layout": "Bố cục"
+  },
+  "themes": {
+    "system": "Hệ thống",
+    "light": "Sáng",
+    "dark": "Tối",
+    "neonLight": "Neon Sáng",
+    "neonDark": "Neon Tối",
+    "glassLight": "Thủy tinh Sáng",
+    "glassDark": "Thủy tinh Tối"
+  },
+  "progressTypes": {
+    "linear": "Dạng thanh",
+    "circular": "Dạng tròn",
+    "gauge": "Dạng đồng hồ"
+  },
+  "colorLevels": {
+    "basic": "Giao diện có sẵn",
+    "advanced": "Màu nhấn",
+    "expert": "Tùy chỉnh đầy đủ"
+  }
+}

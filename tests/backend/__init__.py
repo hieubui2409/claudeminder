@@ -1,1 +1,1 @@
-"""Backend tests for claudiminder."""
+"""Backend tests for claudeminder."""

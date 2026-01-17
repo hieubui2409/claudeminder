@@ -78,7 +78,7 @@ fn setup_tray(app: &tauri::App) -> Result<(), Box<dyn std::error::Error>> {
     TrayIconBuilder::new()
         .icon(app.default_window_icon().unwrap().clone())
         .menu(&menu)
-        .tooltip("claudiminder")
+        .tooltip("claudeminder")
         .on_menu_event(|app, event| {
             if event.id().as_ref() == "quit" {
                 app.exit(0);
@@ -123,7 +123,7 @@ use tauri_plugin_shell::ShellExt;
 async fn call_backend(app: tauri::AppHandle, action: String) -> Result<String, String> {
     let output = app
         .shell()
-        .sidecar("claudiminder-backend")
+        .sidecar("claudeminder-backend")
         .map_err(|e| e.to_string())?
         .arg(&action)
         .output()
@@ -180,7 +180,7 @@ PATTERN (`capabilities/default.json`):
 {
   "$schema": "../gen/schemas/desktop-schema.json",
   "identifier": "default",
-  "description": "Default capabilities for claudiminder",
+  "description": "Default capabilities for claudeminder",
   "windows": ["main"],
   "permissions": ["core:default", "shell:allow-execute", "shell:allow-sidecar"]
 }
@@ -194,12 +194,12 @@ KEY SETTINGS:
 
 ```json
 {
-  "productName": "claudiminder",
-  "identifier": "com.claudiminder.app",
+  "productName": "claudeminder",
+  "identifier": "com.claudeminder.app",
   "bundle": {
     "active": true,
     "targets": "all",
-    "externalBin": ["binaries/claudiminder-backend"],
+    "externalBin": ["binaries/claudeminder-backend"],
     "icon": ["icons/icon.png"]
   },
   "app": {

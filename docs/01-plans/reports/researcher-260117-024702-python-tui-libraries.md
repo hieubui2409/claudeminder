@@ -1,6 +1,6 @@
 # Python TUI Libraries Research Report
 
-**Date:** 2026-01-17 | **Project:** claudiminder | **Scope:** TUI framework selection
+**Date:** 2026-01-17 | **Project:** claudeminder | **Scope:** TUI framework selection
 
 ---
 

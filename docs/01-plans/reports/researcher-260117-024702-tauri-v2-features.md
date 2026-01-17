@@ -1,6 +1,6 @@
 # Tauri v2 Research Report: Features & Best Practices
 
-**Date**: 2026-01-17 | **Project**: claudiminder
+**Date**: 2026-01-17 | **Project**: claudeminder
 
 ---
 
@@ -45,7 +45,7 @@ fn setup_tray(app: &tauri::App) -> Result<()> {
 
     TrayIconBuilder::new()
         .menu(&menu)
-        .tooltip("claudiminder: [X.X%]")  // Dynamic via frontend events
+        .tooltip("claudeminder: [X.X%]")  // Dynamic via frontend events
         .on_tray_icon_event(|tray, event| {
             if let TrayIconEvent::Click {
                 button: MouseButton::Left,
@@ -85,7 +85,7 @@ await trayIcon.setIcon("icons/tray-" + Math.floor(utilization / 10) + "0.png");
 ```json
 {
   "bundle": {
-    "externalBin": ["binaries/claudiminder-backend"]
+    "externalBin": ["binaries/claudeminder-backend"]
   }
 }
 ```
@@ -100,7 +100,7 @@ use tauri_plugin_shell::process::CommandEvent;
 async fn call_backend(app: tauri::AppHandle, action: String) -> Result<String, String> {
     let (mut rx, mut child) = app
         .shell()
-        .sidecar("claudiminder-backend")
+        .sidecar("claudeminder-backend")
         .map_err(|e| e.to_string())?
         .arg(&action)
         .spawn()
@@ -191,7 +191,7 @@ async function notifyReset() {
 
 ---
 
-## 6. Recommended Implementation Order for claudiminder
+## 6. Recommended Implementation Order for claudeminder
 
 1. **Setup**: Use `create-tauri-app` with React + TypeScript + Bun
 2. **Tray**: Implement `TrayIconBuilder` with tooltip updates via event emissions
@@ -216,7 +216,7 @@ async function notifyReset() {
 
 ## 8. Capabilities Configuration
 
-Minimal for claudiminder (`capabilities/default.json`):
+Minimal for claudeminder (`capabilities/default.json`):
 
 ```json
 {

@@ -1,0 +1,122 @@
+/* Overlay Widget - Always on top mini display */
+/* These styles ONLY apply when .overlay-window class is present on body */
+
+:root {
+  --overlay-bg: rgba(20, 20, 30, 0.85);
+  --overlay-border: rgba(255, 255, 255, 0.1);
+  --overlay-text: rgba(255, 255, 255, 0.9);
+  --overlay-success: #4ade80;
+  --overlay-warning: #fbbf24;
+  --overlay-danger: #f87171;
+}
+
+/* Override all backgrounds for overlay window */
+html:has(body.overlay-window),
+body.overlay-window,
+body.overlay-window #root {
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  overflow: hidden !important;
+}
+
+/* Hide any app backgrounds when in overlay mode */
+body.overlay-window .app-bg,
+body.overlay-window .background,
+body.overlay-window [class*="background"] {
+  display: none !important;
+  background: transparent !important;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 180px;
+  height: 80px;
+  background: var(--overlay-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--overlay-border);
+  border-radius: 12px;
+  cursor: grab;
+  user-select: none;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.3),
+    0 0 1px rgba(255, 255, 255, 0.1);
+  transition: box-shadow 0.2s ease;
+}
+
+.overlay:hover {
+  box-shadow:
+    0 6px 24px rgba(0, 0, 0, 0.4),
+    0 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.overlay:active {
+  cursor: grabbing;
+}
+
+.overlay-close {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 4px;
+  opacity: 0;
+  transition:
+    opacity 0.15s ease,
+    color 0.15s ease,
+    background 0.15s ease;
+}
+
+.overlay:hover .overlay-close {
+  opacity: 1;
+}
+
+.overlay-close:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.overlay-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 8px;
+  gap: 4px;
+}
+
+.overlay-percent {
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.5px;
+}
+
+.overlay-reset {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--overlay-text);
+  opacity: 0.7;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}

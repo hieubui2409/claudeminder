@@ -1,0 +1,40 @@
+{
+  "dashboard": {
+    "title": "Claude Usage",
+    "usage": "Usage",
+    "resetsIn": "Resets in",
+    "resetComplete": "Reset Complete!",
+    "refresh": "Refresh",
+    "goals": "Goals",
+    "budget": "Budget",
+    "pace": "Pace",
+    "focusMode": "Focus Mode"
+  },
+  "settings": {
+    "theme": "Theme",
+    "language": "Language",
+    "fontSize": "Font Size",
+    "progressBar": "Progress Bar Style",
+    "colors": "Colors",
+    "layout": "Layout"
+  },
+  "themes": {
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark",
+    "neonLight": "Neon Light",
+    "neonDark": "Neon Dark",
+    "glassLight": "Glass Light",
+    "glassDark": "Glass Dark"
+  },
+  "progressTypes": {
+    "linear": "Linear",
+    "circular": "Circular",
+    "gauge": "Gauge"
+  },
+  "colorLevels": {
+    "basic": "Theme Presets",
+    "advanced": "Accent Color",
+    "expert": "Full Customization"
+  }
+}

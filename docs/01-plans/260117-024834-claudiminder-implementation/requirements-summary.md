@@ -45,7 +45,7 @@
 | Aspect        | Decision                |
 | ------------- | ----------------------- |
 | Format        | TOML                    |
-| Location      | ~/.config/claudiminder/ |
+| Location      | ~/.config/claudeminder/ |
 | Export/Import | No                      |
 | Usage history | No                      |
 

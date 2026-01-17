@@ -31,14 +31,14 @@ Claude usage tracking & reminder tool with TUI/GUI support for Linux, Windows, a
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/claudiminder.git
-cd claudiminder
+git clone https://github.com/yourusername/claudeminder.git
+cd claudeminder
 
 # Install Python dependencies
 uv sync
 
 # Run TUI
-uv run claudiminder status
+uv run claudeminder status
 ```
 
 ### GUI Mode (Tauri)
@@ -55,21 +55,21 @@ bun run tauri dev
 
 ```bash
 # Show usage status
-claudiminder status
+claudeminder status
 
 # Show as JSON
-claudiminder status --json
+claudeminder status --json
 
 # Launch TUI
-claudiminder tui
+claudeminder tui
 
 # Show version
-claudiminder version
+claudeminder version
 ```
 
 ## Configuration
 
-Configuration is stored in `~/.config/claudiminder/config.toml`.
+Configuration is stored in `~/.config/claudeminder/config.toml`.
 
 OAuth credentials are automatically grabbed from `~/.claude/.credentials.json`.
 
@@ -78,6 +78,60 @@ OAuth credentials are automatically grabbed from `~/.claude/.credentials.json`.
 - Light / Dark (standard)
 - Neon Light / Neon Dark (vibrant)
 - Glassmorphism Light / Dark (frosted glass effect)
+
+## Development
+
+### Testing
+
+```bash
+# Run backend tests
+uv run pytest tests/backend
+
+# Run frontend tests
+cd src/frontend && bun run test
+
+# Run with coverage
+uv run pytest tests/backend --cov=src/backend
+```
+
+### Building
+
+```bash
+# Build Tauri app (Linux)
+cd src/frontend && bun run tauri build
+
+# Build Python package
+uv build
+
+# Build Python sidecar binary (Nuitka)
+./scripts/build-sidecar.sh
+```
+
+### E2E Testing
+
+```bash
+# Install Playwright browsers
+cd src/frontend && bunx playwright install chromium
+
+# Run E2E tests
+bun run test:e2e
+```
+
+### Pre-commit Hooks
+
+```bash
+# Install pre-commit hooks
+uv run pre-commit install
+
+# Run hooks manually
+uv run pre-commit run --all-files
+```
+
+## CI/CD
+
+- **Test workflow**: Runs on push/PR to main/master
+- **Build workflow**: Cross-platform builds (Linux, macOS, Windows)
+- **Release workflow**: Automatic releases on version tags (v\*)
 
 ## License
 

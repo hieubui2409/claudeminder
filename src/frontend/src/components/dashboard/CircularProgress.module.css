@@ -1,0 +1,93 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--glass-bg, rgba(15, 15, 30, 0.5));
+  border-radius: 50%;
+  padding: 12px;
+  box-shadow:
+    inset 0 2px 10px rgba(0, 0, 0, 0.3),
+    0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.sizeSm {
+  width: 80px;
+  height: 80px;
+}
+
+.sizeMd {
+  width: 120px;
+  height: 120px;
+}
+
+.sizeLg {
+  width: 180px;
+  height: 180px;
+}
+
+.svg {
+  transform: rotate(-90deg);
+}
+
+.trackCircle {
+  fill: none;
+  stroke: var(--glass-border, rgba(255, 255, 255, 0.15));
+}
+
+.progressCircle {
+  fill: none;
+  stroke: var(--accent-primary, #6366f1);
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 12px var(--accent-primary, #6366f1))
+    drop-shadow(0 0 4px var(--accent-primary, #6366f1));
+  transition: stroke-dashoffset var(--transition-slow, 350ms);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 12px var(--accent-primary, #6366f1))
+      drop-shadow(0 0 4px var(--accent-primary, #6366f1));
+  }
+  50% {
+    filter: drop-shadow(0 0 16px var(--accent-primary, #6366f1))
+      drop-shadow(0 0 8px var(--accent-primary, #6366f1));
+  }
+}
+
+.colorSuccess .progressCircle {
+  stroke: var(--accent-success, #10b981);
+  filter: drop-shadow(0 0 6px var(--accent-success, #10b981));
+}
+
+.colorWarning .progressCircle {
+  stroke: var(--accent-warning, #f59e0b);
+  filter: drop-shadow(0 0 6px var(--accent-warning, #f59e0b));
+}
+
+.colorError .progressCircle {
+  stroke: var(--accent-error, #ef4444);
+  filter: drop-shadow(0 0 6px var(--accent-error, #ef4444));
+}
+
+.label {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.value {
+  font-size: var(--text-2xl, 1.5rem);
+  font-weight: var(--font-bold, 700);
+  color: var(--text-primary, #f0f0f0);
+}
+
+.sublabel {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--text-muted, #9ca3af);
+  margin-top: var(--space-xs, 4px);
+}

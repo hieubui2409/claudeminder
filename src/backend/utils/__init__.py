@@ -1,1 +1,1 @@
-"""Utility functions for claudiminder."""
+"""Utility functions for claudeminder."""

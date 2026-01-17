@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm, 8px);
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: var(--font-medium, 500);
+  color: var(--text-secondary, #a0a0a0);
+}
+
+.stats {
+  font-size: var(--text-sm, 0.875rem);
+  color: var(--text-primary, #f0f0f0);
+  font-weight: var(--font-bold, 700);
+}
+
+.track {
+  height: 8px;
+  background: var(--glass-bg, rgba(10, 10, 15, 0.4));
+  border-radius: var(--radius-full, 9999px);
+  overflow: hidden;
+  position: relative;
+}
+
+.fill {
+  height: 100%;
+  background: var(--gradient-primary, linear-gradient(90deg, #6366f1, #8b5cf6));
+  border-radius: var(--radius-full, 9999px);
+  transition: width var(--transition-slow, 350ms);
+}
+
+.goalReached .fill {
+  background: var(--accent-success, #10b981);
+  box-shadow: 0 0 10px var(--accent-success, #10b981);
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.status {
+  font-size: 0.7rem;
+  color: var(--text-muted, #9ca3af);
+  font-weight: var(--font-medium, 500);
+}
+
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 0.7rem;
+  font-weight: var(--font-bold, 700);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm, 4px);
+}
+
+.trendUp {
+  color: var(--accent-success, #10b981);
+  background: rgba(16, 185, 129, 0.15);
+}
+
+.trendDown {
+  color: var(--accent-error, #ef4444);
+  background: rgba(239, 68, 68, 0.15);
+}

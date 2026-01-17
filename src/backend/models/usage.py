@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 from pydantic import BaseModel, Field
 
 
@@ -28,7 +30,7 @@ class UsageResponse(BaseModel):
     extra_usage: ExtraUsage | None = Field(None, description="Extra usage data")
 
     # Unused fields (kept for completeness)
-    seven_day: dict | None = Field(None, description="7-day usage data")
-    seven_day_opus: dict | None = Field(None, description="7-day Opus usage")
-    seven_day_sonnet: dict | None = Field(None, description="7-day Sonnet usage")
-    seven_day_oauth_apps: dict | None = Field(None, description="7-day OAuth apps usage")
+    seven_day: dict[str, Any] | None = Field(None, description="7-day usage data")
+    seven_day_opus: dict[str, Any] | None = Field(None, description="7-day Opus usage")
+    seven_day_sonnet: dict[str, Any] | None = Field(None, description="7-day Sonnet usage")
+    seven_day_oauth_apps: dict[str, Any] | None = Field(None, description="7-day OAuth apps usage")

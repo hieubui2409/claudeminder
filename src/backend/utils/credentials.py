@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 
 from loguru import logger
-from pydantic import BaseModel, Field, SecretStr
+from pydantic import BaseModel, ConfigDict, Field, SecretStr
 
 from ..models.settings import get_settings
 
@@ -14,11 +14,13 @@ from ..models.settings import get_settings
 class OAuthCredentials(BaseModel):
     """OAuth credentials from Claude."""
 
-    access_token: SecretStr = Field(..., description="OAuth access token")
-    refresh_token: SecretStr | None = Field(None, description="OAuth refresh token")
-    expires_at: int | None = Field(None, description="Token expiration timestamp")
-    subscription_type: str | None = Field(None, description="Subscription type")
-    rate_limit_tier: str | None = Field(None, description="Rate limit tier")
+    model_config = ConfigDict(populate_by_name=True)
+
+    access_token: SecretStr = Field(..., alias="accessToken", description="OAuth access token")
+    refresh_token: SecretStr | None = Field(None, alias="refreshToken", description="OAuth refresh token")
+    expires_at: int | None = Field(None, alias="expiresAt", description="Token expiration timestamp")
+    subscription_type: str | None = Field(None, alias="subscriptionType", description="Subscription type")
+    rate_limit_tier: str | None = Field(None, alias="rateLimitTier", description="Rate limit tier")
 
 
 class CredentialsFile(BaseModel):

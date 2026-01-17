@@ -1,0 +1,47 @@
+/* Claudiminder TUI Styles */
+
+Screen {
+    background: $surface;
+}
+
+#app-container {
+    padding: 1 2;
+}
+
+#main-content {
+    height: auto;
+}
+
+#usage-display {
+    border: solid $primary;
+    padding: 1 2;
+    margin-bottom: 1;
+    height: auto;
+}
+
+#reset-countdown {
+    border: solid $secondary;
+    padding: 1 2;
+    margin-bottom: 1;
+    height: auto;
+    text-align: center;
+}
+
+#goals-indicator {
+    border: solid $accent;
+    padding: 1 2;
+    height: auto;
+}
+
+#offline-banner {
+    text-align: center;
+    margin-bottom: 1;
+}
+
+Header {
+    dock: top;
+}
+
+Footer {
+    dock: bottom;
+}
