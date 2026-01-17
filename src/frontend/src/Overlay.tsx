@@ -60,8 +60,14 @@ export default function Overlay() {
     if (e.button !== 0) return;
     // Don't drag when clicking close button
     if ((e.target as HTMLElement).closest(".overlay-close")) return;
+    // Prevent default to avoid text selection interfering with drag
     e.preventDefault();
-    await getCurrentWindow().startDragging();
+    e.stopPropagation();
+    try {
+      await getCurrentWindow().startDragging();
+    } catch (err) {
+      console.error("Failed to start dragging:", err);
+    }
   };
 
   const handleClose = async (e: React.MouseEvent) => {
@@ -82,7 +88,7 @@ export default function Overlay() {
   };
 
   return (
-    <div className="overlay" onMouseDown={handleDrag}>
+    <div className="overlay" onMouseDown={handleDrag} data-tauri-drag-region>
       <button className="overlay-close" onClick={handleClose} title="Close">
         ×
       </button>

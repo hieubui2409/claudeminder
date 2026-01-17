@@ -19,7 +19,7 @@
   background: var(--bg-glass, rgba(255, 255, 255, 0.08));
   border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.12));
   border-radius: var(--radius-md, 8px);
-  padding: var(--space-xs, 4px) var(--space-md, 16px);
+  padding: var(--space-sm, 8px) var(--space-md, 16px);
   padding-right: 32px;
   color: var(--text-primary, #f8fafc);
   font-size: var(--text-sm, 0.875rem);
@@ -45,6 +45,9 @@
 .select option {
   background: var(--bg-secondary, #1a1a2e);
   color: var(--text-primary, #f8fafc);
+  padding: 8px 12px;
+  line-height: 1.4;
+  min-height: 32px;
 }
 
 /* Slider Control */

@@ -10,7 +10,8 @@
   --overlay-danger: #f87171;
 }
 
-/* Override all backgrounds for overlay window */
+/* Override all backgrounds for overlay window - CRITICAL for transparency */
+html.overlay-window,
 html:has(body.overlay-window),
 body.overlay-window,
 body.overlay-window #root {
@@ -20,7 +21,20 @@ body.overlay-window #root {
   height: 100% !important;
   background: transparent !important;
   background-color: transparent !important;
+  background-image: none !important;
   overflow: hidden !important;
+}
+
+/* Prevent any state changes from affecting transparency */
+body.overlay-window,
+body.overlay-window:hover,
+body.overlay-window:focus,
+body.overlay-window:active,
+body.overlay-window:focus-within {
+  background: transparent !important;
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 /* Hide any app backgrounds when in overlay mode */
@@ -29,6 +43,11 @@ body.overlay-window .background,
 body.overlay-window [class*="background"] {
   display: none !important;
   background: transparent !important;
+}
+
+/* Disable focus-visible styles in overlay mode */
+body.overlay-window *:focus-visible {
+  outline: none !important;
 }
 
 .overlay {
@@ -44,21 +63,13 @@ body.overlay-window [class*="background"] {
   border-radius: 12px;
   cursor: grab;
   user-select: none;
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
   font-family:
     "Inter",
     -apple-system,
     BlinkMacSystemFont,
     sans-serif;
-  box-shadow:
-    0 4px 20px rgba(0, 0, 0, 0.3),
-    0 0 1px rgba(255, 255, 255, 0.1);
-  transition: box-shadow 0.2s ease;
-}
-
-.overlay:hover {
-  box-shadow:
-    0 6px 24px rgba(0, 0, 0, 0.4),
-    0 0 1px rgba(255, 255, 255, 0.2);
 }
 
 .overlay:active {
@@ -79,6 +90,7 @@ body.overlay-window [class*="background"] {
   cursor: pointer;
   border-radius: 4px;
   opacity: 0;
+  -webkit-app-region: no-drag;
   transition:
     opacity 0.15s ease,
     color 0.15s ease,

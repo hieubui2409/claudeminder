@@ -81,50 +81,91 @@ OAuth credentials are automatically grabbed from `~/.claude/.credentials.json`.
 
 ## Development
 
-### Testing
+### Quick Commands
 
 ```bash
-# Run backend tests
-uv run pytest tests/backend
+# Navigate to frontend directory
+cd src/frontend
 
-# Run frontend tests
-cd src/frontend && bun run test
+# Install dependencies (first time only)
+bun install
 
-# Run with coverage
-uv run pytest tests/backend --cov=src/backend
-```
+# ─────────────────────────────────────────────────────────
+# DEVELOPMENT
+# ─────────────────────────────────────────────────────────
 
-### Building
+# Run Tauri app in dev mode (hot reload)
+bun run tauri dev
 
-```bash
-# Build Tauri app (Linux)
-cd src/frontend && bun run tauri build
+# Run Vite dev server only (without Tauri)
+bun run dev
 
-# Build Python package
-uv build
+# Preview production build locally
+bun run preview
 
-# Build Python sidecar binary (Nuitka)
-./scripts/build-sidecar.sh
-```
+# ─────────────────────────────────────────────────────────
+# BUILD
+# ─────────────────────────────────────────────────────────
 
-### E2E Testing
+# Build frontend only (TypeScript + Vite)
+bun run build
 
-```bash
-# Install Playwright browsers
-cd src/frontend && bunx playwright install chromium
+# Build Tauri app (creates executable)
+bun run tauri build
 
-# Run E2E tests
+# Build outputs:
+# - Linux: src/frontend/src-tauri/target/release/bundle/
+#   - .deb package
+#   - .AppImage
+# - macOS: .app bundle, .dmg
+# - Windows: .exe, .msi
+
+# ─────────────────────────────────────────────────────────
+# TESTING
+# ─────────────────────────────────────────────────────────
+
+# Run unit tests
+bun run test
+
+# Run tests with coverage
+bun run test:coverage
+
+# Run E2E tests (requires Playwright)
+bunx playwright install chromium  # first time only
 bun run test:e2e
+
+# ─────────────────────────────────────────────────────────
+# CODE QUALITY
+# ─────────────────────────────────────────────────────────
+
+# Type check
+bun run typecheck
+
+# Lint
+bun run lint
+
+# Format code
+bun run format
+
+# Check formatting
+bun run format:check
+```
+
+### Backend (Python)
+
+```bash
+# From project root
+uv sync                              # Install dependencies
+uv run pytest tests/backend          # Run tests
+uv run pytest --cov=src/backend      # Run with coverage
+uv build                             # Build Python package
 ```
 
 ### Pre-commit Hooks
 
 ```bash
-# Install pre-commit hooks
-uv run pre-commit install
-
-# Run hooks manually
-uv run pre-commit run --all-files
+uv run pre-commit install            # Install hooks
+uv run pre-commit run --all-files    # Run manually
 ```
 
 ## CI/CD

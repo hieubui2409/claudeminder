@@ -1,9 +1,40 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Claudiminder</title>
+    <script>
+      // Check if overlay window - skip all background styles
+      var isOverlay = window.location.pathname === "/overlay";
+      if (!isOverlay) {
+        // Critical CSS to prevent FOUC - only for main window
+        var style = document.createElement("style");
+        style.textContent = "html, body { background: #0f0f1a; }";
+        document.head.appendChild(style);
+
+        // Apply theme before first paint
+        try {
+          var stored = localStorage.getItem("claudeminder-theme");
+          if (stored) {
+            var parsed = JSON.parse(stored);
+            var theme = parsed.state && parsed.state.theme;
+            if (theme === "system") {
+              theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+                ? "dark"
+                : "light";
+            }
+            if (theme === "light") {
+              document.documentElement.setAttribute("data-theme", "light");
+              style.textContent = "html, body { background: #f8fafc; }";
+            }
+          }
+        } catch (e) {}
+      } else {
+        // Overlay: ensure transparent
+        document.documentElement.style.background = "transparent";
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

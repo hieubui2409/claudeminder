@@ -10,7 +10,7 @@
   },
   "bundle": {
     "active": true,
-    "targets": "all",
+    "targets": ["deb", "appimage"],
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",
@@ -18,7 +18,20 @@
       "icons/icon.icns",
       "icons/icon.ico"
     ],
-    "externalBin": ["binaries/claudeminder-sidecar"]
+    "externalBin": ["binaries/claudeminder-sidecar"],
+    "linux": {
+      "deb": {
+        "depends": ["libwebkit2gtk-4.1-0", "libappindicator3-1"],
+        "section": "utils",
+        "priority": "optional"
+      },
+      "appimage": {
+        "bundleMediaFramework": false
+      }
+    },
+    "category": "Utility",
+    "shortDescription": "Claude usage tracking & reminder tool",
+    "longDescription": "Monitor Claude AI usage limits, get notifications before reset windows, and track usage history with system tray integration."
   },
   "app": {
     "windows": [
@@ -40,6 +53,7 @@
         "resizable": false,
         "decorations": false,
         "transparent": true,
+        "shadow": false,
         "alwaysOnTop": true,
         "visible": false,
         "skipTaskbar": true,

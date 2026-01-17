@@ -2,9 +2,11 @@
   "$schema": "https://tauri.app/v2/schemas/capability-schema.json",
   "identifier": "default",
   "description": "Default capabilities for Claudiminder",
-  "windows": ["main"],
+  "windows": ["main", "overlay"],
   "permissions": [
     "core:default",
+    "core:window:allow-start-dragging",
+    "core:window:allow-set-position",
     "notification:default",
     "notification:allow-is-permission-granted",
     "notification:allow-request-permission",
