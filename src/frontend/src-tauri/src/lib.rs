@@ -80,7 +80,11 @@ pub fn run() {
             commands::overlay::toggle_overlay,
             commands::overlay::set_overlay_visible,
             commands::overlay::set_overlay_position,
+            commands::window::apply_show_mode,
+            commands::window::save_overlay_position,
+            commands::window::get_overlay_position,
             tray::commands::update_tray_info,
+            tray::commands::update_tray_with_usage,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

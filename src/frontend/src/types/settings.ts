@@ -1,3 +1,5 @@
+export type ShowMode = "main" | "overlay" | "both";
+
 export interface AppSettings {
   theme: string;
   locale: string;

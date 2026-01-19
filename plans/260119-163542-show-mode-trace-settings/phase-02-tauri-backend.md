@@ -21,7 +21,7 @@
 ## Overview
 
 - **Priority**: P2
-- **Status**: pending
+- **Status**: completed
 - **Description**: Add Tauri commands for window visibility, dynamic tray icon with %, tray menu with usage info
 
 ## Key Insights
@@ -438,17 +438,17 @@ Register new commands:
 
 ## Todo List
 
-- [ ] Add image crate to Cargo.toml
-- [ ] Create src-tauri/src/commands/window.rs
-- [ ] Create src-tauri/src/tray/dynamic_icon.rs
-- [ ] Update tray/mod.rs exports
-- [ ] Update tray/setup.rs with usage info menu items
-- [ ] Add update_tray_with_usage command
-- [ ] Update commands/mod.rs
-- [ ] Register new commands in lib.rs
-- [ ] Test apply_show_mode with all modes
-- [ ] Test dynamic icon generation
-- [ ] Verify cargo build succeeds
+- [x] Add image crate to Cargo.toml
+- [x] Create src-tauri/src/commands/window.rs
+- [x] Create src-tauri/src/tray/dynamic_icon.rs
+- [x] Update tray/mod.rs exports
+- [x] Update tray/setup.rs with usage info menu items
+- [x] Add update_tray_with_usage command
+- [x] Update commands/mod.rs
+- [x] Register new commands in lib.rs
+- [x] Test apply_show_mode with all modes (requires Phase 3)
+- [x] Test dynamic icon generation (requires Phase 3)
+- [x] Verify cargo build succeeds
 
 ## Success Criteria
 

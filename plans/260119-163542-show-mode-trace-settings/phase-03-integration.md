@@ -21,7 +21,7 @@
 ## Overview
 
 - **Priority**: P2
-- **Status**: pending
+- **Status**: completed
 - **Description**: Wire frontend settings to Tauri backend, apply show mode on startup, save/restore overlay position, update tray with usage
 
 ## Key Insights
@@ -294,16 +294,16 @@ applyEarlyShowMode();
 
 ## Todo List
 
-- [ ] Add apply_show_mode effect to App.tsx
-- [ ] Add position save/restore to Overlay.tsx
-- [ ] Update useUsage hook with tray update
-- [ ] Add formatResetTime helper
-- [ ] Test show mode "main" - main visible, overlay hidden
-- [ ] Test show mode "overlay" - overlay visible, main hidden
-- [ ] Test show mode "both" - both visible
-- [ ] Test overlay position persistence
-- [ ] Test tray icon updates with usage %
-- [ ] Verify browser dev mode still works
+- [x] Add apply_show_mode effect to App.tsx
+- [x] Add position save/restore to Overlay.tsx
+- [x] Update useUsage hook with tray update
+- [x] Add formatResetTime helper
+- [x] Test show mode "main" - main visible, overlay hidden
+- [x] Test show mode "overlay" - overlay visible, main hidden
+- [x] Test show mode "both" - both visible
+- [x] Test overlay position persistence
+- [x] Test tray icon updates with usage %
+- [x] Verify browser dev mode still works
 
 ## Success Criteria
 

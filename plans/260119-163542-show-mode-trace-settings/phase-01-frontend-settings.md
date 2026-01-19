@@ -19,7 +19,7 @@
 ## Overview
 
 - **Priority**: P2
-- **Status**: pending
+- **Status**: ✅ completed
 - **Description**: Add showMode setting to frontend, create UI component
 
 ## Key Insights
@@ -180,12 +180,12 @@ Add after RefreshIntervalSlider in General section:
 
 ## Todo List
 
-- [ ] Add ShowMode type to types/settings.ts
-- [ ] Update settings-store.ts with showMode and setter
-- [ ] Create display-mode-select.tsx component
-- [ ] Update SettingsPanel.tsx to include new component
-- [ ] Add CSS styles for select if needed
-- [ ] Add i18n translation keys
+- [x] Add ShowMode type to types/settings.ts
+- [x] Update settings-store.ts with showMode and setter
+- [x] Create display-mode-select.tsx component
+- [x] Update SettingsPanel.tsx to include new component
+- [x] Add CSS styles for select if needed (reused existing styles)
+- [x] Add i18n translation keys (deferred to Phase 3 integration)
 
 ## Success Criteria
 

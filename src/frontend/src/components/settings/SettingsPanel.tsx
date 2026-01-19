@@ -6,6 +6,7 @@ import { LanguageSwitcher } from "./language-switcher";
 import { FontSizeSlider } from "./font-size-slider";
 import { RefreshIntervalSlider } from "./refresh-interval-slider";
 import { ReminderSettings } from "./reminder-settings";
+import { DisplayModeSelect } from "./display-mode-select";
 import styles from "./SettingsPanel.module.css";
 
 interface SettingsPanelProps {
@@ -73,6 +74,7 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
                 </h3>
                 <div className={styles.sectionContent}>
                   <RefreshIntervalSlider />
+                  <DisplayModeSelect />
                 </div>
               </section>
 

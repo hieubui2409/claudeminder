@@ -5,6 +5,11 @@ use tauri::{
 };
 
 pub fn setup_tray(app: &App) -> Result<TrayIconId, Box<dyn std::error::Error>> {
+    // Usage info items (disabled, for display only)
+    let usage_info = MenuItem::with_id(app, "usage_info", "Usage: ---%", false, None::<&str>)?;
+    let reset_info = MenuItem::with_id(app, "reset_info", "Reset: --:--", false, None::<&str>)?;
+    let separator0 = PredefinedMenuItem::separator(app)?;
+
     // Snooze submenu
     let snooze_5 = MenuItem::with_id(app, "snooze_5", "5 minutes", true, None::<&str>)?;
     let snooze_15 = MenuItem::with_id(app, "snooze_15", "15 minutes", true, None::<&str>)?;
@@ -31,6 +36,9 @@ pub fn setup_tray(app: &App) -> Result<TrayIconId, Box<dyn std::error::Error>> {
     let menu = Menu::with_items(
         app,
         &[
+            &usage_info,
+            &reset_info,
+            &separator0,
             &snooze_menu,
             &separator1,
             &show,

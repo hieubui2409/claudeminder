@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { useTranslation } from "react-i18next";
 import { isTauri } from "./utils/mock-data";
@@ -45,6 +46,35 @@ function App() {
 
   useEffect(() => {
     ensureNotificationPermission();
+  }, []);
+
+  // Apply show mode on startup
+  useEffect(() => {
+    if (!isTauri()) return;
+
+    const applyShowMode = async () => {
+      try {
+        // Small delay to ensure Tauri windows are ready
+        await new Promise((resolve) => setTimeout(resolve, 100));
+
+        // Read directly from localStorage to get initial value before Zustand hydrates
+        const stored = localStorage.getItem("claudeminder-settings");
+        if (stored) {
+          const settings = JSON.parse(stored);
+          const mode = settings.state?.showMode;
+          // Validate mode before invoke
+          if (mode === "main" || mode === "overlay" || mode === "both") {
+            await invoke("apply_show_mode", { mode });
+          } else {
+            await invoke("apply_show_mode", { mode: "main" });
+          }
+        }
+      } catch (err) {
+        console.error("Failed to apply show mode:", err);
+      }
+    };
+
+    applyShowMode();
   }, []);
 
   useEffect(() => {

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import type { ShowMode } from "../types/settings";
 
 export type ProgressBarType = "linear" | "circular" | "gauge";
 
@@ -8,10 +9,12 @@ interface SettingsStore {
   progressBarType: ProgressBarType;
   focusMode: boolean;
   refreshInterval: number; // seconds (30-300)
+  showMode: ShowMode; // Display mode on startup
   setFontSize: (size: number) => void;
   setProgressBarType: (type: ProgressBarType) => void;
   setFocusMode: (enabled: boolean) => void;
   setRefreshInterval: (seconds: number) => void;
+  setShowMode: (mode: ShowMode) => void;
 }
 
 export const useSettingsStore = create<SettingsStore>()(
@@ -21,6 +24,7 @@ export const useSettingsStore = create<SettingsStore>()(
       progressBarType: "circular",
       focusMode: false,
       refreshInterval: 60, // Default 60 seconds
+      showMode: "main", // Default: show main window only
       setFontSize: (size) => {
         const clamped = Math.max(50, Math.min(150, size));
         set({ fontSize: clamped });
@@ -32,6 +36,7 @@ export const useSettingsStore = create<SettingsStore>()(
         const clamped = Math.max(30, Math.min(300, seconds));
         set({ refreshInterval: clamped });
       },
+      setShowMode: (mode) => set({ showMode: mode }),
     }),
     {
       name: "claudeminder-settings",

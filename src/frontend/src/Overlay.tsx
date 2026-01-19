@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { getCurrentWindow } from "@tauri-apps/api/window";
+import { isTauri } from "./utils/mock-data";
 import "./styles/overlay.css";
 
 interface UsageData {
@@ -10,6 +11,13 @@ interface UsageData {
     resets_at: string;
   } | null;
 }
+
+interface Position {
+  x: number;
+  y: number;
+}
+
+const POSITION_KEY = "claudeminder-overlay-position";
 
 function formatResetTime(resetAt: string): string {
   const reset = new Date(resetAt);
@@ -56,6 +64,25 @@ export default function Overlay() {
     };
   }, []);
 
+  // Restore overlay position on mount
+  useEffect(() => {
+    if (!isTauri()) return;
+
+    const restorePosition = async () => {
+      try {
+        const stored = localStorage.getItem(POSITION_KEY);
+        if (stored) {
+          const position: Position = JSON.parse(stored);
+          await invoke("save_overlay_position", { position });
+        }
+      } catch (err) {
+        console.error("Failed to restore overlay position:", err);
+      }
+    };
+
+    restorePosition();
+  }, []);
+
   const handleDrag = async (e: React.MouseEvent) => {
     if (e.button !== 0) return;
     // Don't drag when clicking close button
@@ -67,6 +94,17 @@ export default function Overlay() {
       await getCurrentWindow().startDragging();
     } catch (err) {
       console.error("Failed to start dragging:", err);
+    }
+  };
+
+  const handleDragEnd = async () => {
+    if (!isTauri()) return;
+
+    try {
+      const position = await invoke<Position>("get_overlay_position");
+      localStorage.setItem(POSITION_KEY, JSON.stringify(position));
+    } catch (err) {
+      console.error("Failed to save overlay position:", err);
     }
   };
 
@@ -88,7 +126,12 @@ export default function Overlay() {
   };
 
   return (
-    <div className="overlay" onMouseDown={handleDrag} data-tauri-drag-region>
+    <div
+      className="overlay"
+      onMouseDown={handleDrag}
+      onMouseUp={handleDragEnd}
+      data-tauri-drag-region
+    >
       <button className="overlay-close" onClick={handleClose} title="Close">
         ×
       </button>
