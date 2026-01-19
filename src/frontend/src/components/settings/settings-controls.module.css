@@ -46,8 +46,7 @@
   background: var(--bg-secondary, #1a1a2e);
   color: var(--text-primary, #f8fafc);
   padding: 8px 12px;
-  line-height: 1.4;
-  min-height: 32px;
+  line-height: 1.5;
 }
 
 /* Slider Control */

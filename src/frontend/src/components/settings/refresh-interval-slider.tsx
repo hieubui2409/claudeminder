@@ -35,7 +35,6 @@ export function RefreshIntervalSlider() {
       />
       <div className={styles.sliderLabels}>
         <span>30s</span>
-        <span>2m</span>
         <span>5m</span>
       </div>
     </div>

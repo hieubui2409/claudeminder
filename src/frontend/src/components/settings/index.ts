@@ -6,4 +6,4 @@ export { RefreshIntervalSlider } from "./refresh-interval-slider";
 export { ColorCustomizer } from "./color-customizer";
 export { ProgressBarPicker } from "./progress-bar-picker";
 export { FocusModeToggle } from "./FocusModeToggle";
-export { ReminderSettings } from "./reminder-settings";
+export { CommandScheduler } from "./command-scheduler";

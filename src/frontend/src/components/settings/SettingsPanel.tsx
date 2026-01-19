@@ -5,7 +5,7 @@ import { ThemeSwitcher } from "./theme-switcher";
 import { LanguageSwitcher } from "./language-switcher";
 import { FontSizeSlider } from "./font-size-slider";
 import { RefreshIntervalSlider } from "./refresh-interval-slider";
-import { ReminderSettings } from "./reminder-settings";
+import { CommandScheduler } from "./command-scheduler";
 import { DisplayModeSelect } from "./display-mode-select";
 import styles from "./SettingsPanel.module.css";
 
@@ -80,10 +80,10 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
 
               <section className={styles.section}>
                 <h3 className={styles.sectionTitle}>
-                  {t("settings.reminders", "Reminders")}
+                  {t("settings.scheduler", "Command Scheduler")}
                 </h3>
                 <div className={styles.sectionContent}>
-                  <ReminderSettings />
+                  <CommandScheduler />
                 </div>
               </section>
 

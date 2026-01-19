@@ -1,0 +1,289 @@
+/* Command Scheduler Styles */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md, 16px);
+}
+
+.loadingText {
+  color: var(--text-muted, #9ca3af);
+  font-size: var(--text-sm, 0.875rem);
+}
+
+.commandList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm, 8px);
+}
+
+.emptyState {
+  padding: var(--space-lg, 24px);
+  text-align: center;
+}
+
+.emptyText {
+  color: var(--text-muted, #9ca3af);
+  font-size: var(--text-sm, 0.875rem);
+}
+
+/* Command Item */
+.commandItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm, 8px) var(--space-md, 12px);
+  background: var(--bg-glass, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-md, 8px);
+  gap: var(--space-sm, 8px);
+}
+
+.commandItem.disabled {
+  opacity: 0.5;
+}
+
+.commandInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.commandName {
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: var(--font-medium, 500);
+  color: var(--text-primary, #f8fafc);
+}
+
+.commandText {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--text-muted, #9ca3af);
+  font-family: var(--font-mono, monospace);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.triggerBadge {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--accent-primary, #6366f1);
+  background: rgba(99, 102, 241, 0.15);
+  padding: 2px 6px;
+  border-radius: var(--radius-full, 9999px);
+  width: fit-content;
+}
+
+.commandActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs, 4px);
+}
+
+/* Toggle Button */
+.toggleBtn {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  background: var(--bg-glass, rgba(255, 255, 255, 0.1));
+  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.12));
+  border-radius: var(--radius-full, 9999px);
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+
+.toggleBtn.active {
+  background: var(--accent-primary, #6366f1);
+  border-color: transparent;
+}
+
+.toggleBtn .toggleThumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 200ms ease;
+}
+
+.toggleBtn.active .toggleThumb {
+  transform: translateX(16px);
+}
+
+/* Action Buttons */
+.editBtn,
+.deleteBtn {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-sm, 6px);
+  color: var(--text-secondary, #94a3b8);
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 150ms ease;
+}
+
+.editBtn:hover {
+  color: var(--accent-primary, #6366f1);
+  border-color: var(--accent-primary, #6366f1);
+}
+
+.deleteBtn:hover {
+  color: var(--accent-error, #ef4444);
+  border-color: var(--accent-error, #ef4444);
+}
+
+/* Edit Form */
+.editForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs, 4px);
+  width: 100%;
+}
+
+/* Add Form */
+.addForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm, 8px);
+  padding: var(--space-md, 12px);
+  background: var(--bg-glass, rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-md, 8px);
+}
+
+.triggerRow {
+  display: flex;
+  gap: var(--space-sm, 8px);
+}
+
+/* Form Controls */
+.input {
+  background: var(--bg-glass, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.12));
+  border-radius: var(--radius-sm, 6px);
+  padding: var(--space-xs, 4px) var(--space-sm, 8px);
+  color: var(--text-primary, #f8fafc);
+  font-size: var(--text-sm, 0.875rem);
+  transition: all 150ms ease;
+}
+
+.input::placeholder {
+  color: var(--text-muted, #64748b);
+}
+
+.input:hover {
+  border-color: var(--accent-primary, #6366f1);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--accent-primary, #6366f1);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+.commandInput {
+  font-family: var(--font-mono, monospace);
+}
+
+.select {
+  appearance: none;
+  background: var(--bg-glass, rgba(255, 255, 255, 0.08));
+  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.12));
+  border-radius: var(--radius-sm, 6px);
+  padding: var(--space-xs, 4px) var(--space-md, 16px) var(--space-xs, 4px)
+    var(--space-sm, 8px);
+  color: var(--text-primary, #f8fafc);
+  font-size: var(--text-sm, 0.875rem);
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%239ca3af' d='M2 3.5L5 6.5L8 3.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 6px center;
+  min-width: 100px;
+}
+
+.select option {
+  background: var(--bg-secondary, #1a1a2e);
+  color: var(--text-primary, #f8fafc);
+}
+
+.hint {
+  font-size: var(--text-xs, 0.75rem);
+  color: var(--text-muted, #64748b);
+}
+
+/* Form Actions */
+.formActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm, 8px);
+  margin-top: var(--space-xs, 4px);
+}
+
+.cancelBtn,
+.saveBtn,
+.doneBtn {
+  padding: var(--space-xs, 4px) var(--space-md, 12px);
+  border-radius: var(--radius-sm, 6px);
+  font-size: var(--text-sm, 0.875rem);
+  font-weight: var(--font-medium, 500);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.cancelBtn {
+  background: transparent;
+  border: 1px solid var(--border-glass, rgba(255, 255, 255, 0.12));
+  color: var(--text-secondary, #94a3b8);
+}
+
+.cancelBtn:hover {
+  border-color: var(--text-secondary, #94a3b8);
+  color: var(--text-primary, #f8fafc);
+}
+
+.saveBtn,
+.doneBtn {
+  background: var(--accent-primary, #6366f1);
+  border: none;
+  color: white;
+}
+
+.saveBtn:hover:not(:disabled),
+.doneBtn:hover {
+  background: var(--accent-secondary, #8b5cf6);
+}
+
+.saveBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Add Button */
+.addBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs, 4px);
+  padding: var(--space-sm, 8px);
+  background: transparent;
+  border: 1px dashed var(--border-glass, rgba(255, 255, 255, 0.2));
+  border-radius: var(--radius-md, 8px);
+  color: var(--text-secondary, #94a3b8);
+  font-size: var(--text-sm, 0.875rem);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.addBtn:hover {
+  border-color: var(--accent-primary, #6366f1);
+  color: var(--accent-primary, #6366f1);
+  background: rgba(99, 102, 241, 0.05);
+}

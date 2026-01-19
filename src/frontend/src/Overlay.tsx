@@ -35,6 +35,7 @@ function formatResetTime(resetAt: string): string {
 
 export default function Overlay() {
   const [usage, setUsage] = useState<UsageData | null>(null);
+  const [ready, setReady] = useState(false);
 
   const fetchUsage = async () => {
     try {
@@ -46,8 +47,17 @@ export default function Overlay() {
   };
 
   useEffect(() => {
-    // Mark body as overlay window for CSS overrides
+    // Mark body and html as overlay window for CSS overrides - do this synchronously before render
+    document.documentElement.classList.add("overlay-window");
     document.body.classList.add("overlay-window");
+    // Force background to transparent immediately
+    document.documentElement.style.background = "transparent";
+    document.body.style.background = "transparent";
+    const root = document.getElementById("root");
+    if (root) root.style.background = "transparent";
+
+    // Small delay to ensure CSS is applied before showing content
+    requestAnimationFrame(() => setReady(true));
 
     fetchUsage();
     const interval = setInterval(fetchUsage, 30000);
@@ -58,6 +68,7 @@ export default function Overlay() {
     const cleanup = setupListener();
 
     return () => {
+      document.documentElement.classList.remove("overlay-window");
       document.body.classList.remove("overlay-window");
       clearInterval(interval);
       cleanup.then((unlisten) => unlisten());
@@ -124,6 +135,9 @@ export default function Overlay() {
     if (percent > 60) return "var(--overlay-warning)";
     return "var(--overlay-success)";
   };
+
+  // Don't render until CSS is ready to prevent flash
+  if (!ready) return null;
 
   return (
     <div

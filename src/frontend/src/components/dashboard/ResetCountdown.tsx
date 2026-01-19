@@ -18,8 +18,13 @@ function formatTime(ms: number): string {
     return `${hours}h ${minutes}m`;
   }
 
-  // If less than 1 hour, show "MM:SS"
-  return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+  // If less than 1 hour, show "Xm Ys" format consistently
+  if (minutes > 0) {
+    return `${minutes}m ${seconds}s`;
+  }
+
+  // Less than 1 minute, show seconds only
+  return `${seconds}s`;
 }
 
 export function ResetCountdown({
